@@ -46,6 +46,9 @@ preprocess = trn.Compose([
         trn.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
 ])
 
+import sys
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+
 from misc.resnet_utils import myResnet
 import misc.resnet as resnet
 
@@ -102,7 +105,7 @@ if __name__ == "__main__":
   parser.add_argument('--images_root', default='', help='root location in which images are stored, to be prepended to file_path in input json')
   parser.add_argument('--att_size', default=14, type=int, help='14x14 or 7x7')
   parser.add_argument('--model', default='resnet101', type=str, help='resnet101, resnet152')
-  parser.add_argument('--model_root', default='./data/imagenet_weights', type=str, help='model root')
+  parser.add_argument('--model_root', default='../data', type=str, help='model root')
 
   args = parser.parse_args()
   params = vars(args) # convert to ordinary dict
