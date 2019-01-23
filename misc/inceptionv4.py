@@ -1,6 +1,7 @@
 from __future__ import print_function, division, absolute_import
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 import torch.utils.model_zoo as model_zoo
 import os
 import sys
@@ -304,9 +305,17 @@ class InceptionV4(nn.Module):
         return x
 
     def forward(self, input):
-        x = self.features(input)
-        x = self.logits(x)
-        return x
+        input = input.unsqueeze(0)	
+        att = self.features(input)
+        
+        #print("att shape before: ")
+        #print(att.shape)
+        processed_att = F.adaptive_avg_pool2d(att,[14,14]).squeeze().permute(1, 2, 0)
+        #print("att shape after: ")
+        #print(processed_att.shape)
+        
+        #x = self.logits(att)
+        return -1, processed_att
 
 
 def inceptionv4(num_classes=1000, pretrained='imagenet'):
