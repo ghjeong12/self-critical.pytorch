@@ -23,5 +23,12 @@
   * Training time: 10h 38m 40s
   * CIDEr: 1.038
 * After RL
-  * CIDEr 
+  * Training time:
+  * CIDEr:
 ### inceptionv4
+* Before RL
+  * Training time: 10h 34m 49s
+  * CIDEr: 1.010
+* After RL
+  * Training time:
+  * CIDEr:
